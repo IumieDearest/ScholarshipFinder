@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 export default function Login() {
+  const { setUser } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -10,8 +12,7 @@ export default function Login() {
   const [status, setStatus] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    if (e) e.preventDefault();
+  const handleSubmit = () => {
     setMessage("");
     setStatus("");
 
@@ -21,10 +22,8 @@ export default function Login() {
       return;
     }
 
-    // TODO: call your auth API here
-    setStatus("success");
-    setMessage("Sign in successful! Redirecting...");
-    setTimeout(() => navigate("/dashboard"), 1800);
+    setUser({ role: "student", name: "Student", email });
+    navigate("/dashboard");
   };
 
   return (
@@ -41,8 +40,8 @@ export default function Login() {
           <span className="font-bold text-gray-800 text-lg">ScholarshipFinder</span>
         </button>
         <div className="flex gap-6 text-sm text-gray-600">
-          <button type="button" onClick={() => navigate("/help")} className="hover:text-blue-600 transition-colors">Help Center</button>
-          <button type="button" onClick={() => navigate("/rules")} className="hover:text-blue-600 transition-colors">Program Rules</button>
+          <button type="button" className="hover:text-blue-600 transition-colors">Help Center</button>
+          <button type="button" className="hover:text-blue-600 transition-colors">Program Rules</button>
         </div>
       </nav>
 
@@ -50,7 +49,6 @@ export default function Login() {
       <div className="flex flex-1 items-center justify-center py-10 px-4">
         <div className="bg-white rounded-2xl shadow-lg p-8 w-full max-w-sm">
 
-          {/* Heading */}
           <h2 className="text-2xl font-bold text-gray-800 mb-1">Welcome Back</h2>
           <p className="text-gray-500 text-sm mb-6 leading-relaxed">
             Enter your credentials to manage your scholarship applications and track your progress.
@@ -71,6 +69,7 @@ export default function Login() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="student@university.edu.ph"
                   className="flex-1 outline-none text-sm text-gray-700 bg-transparent placeholder:text-gray-400"
+                  onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
                 />
               </div>
             </div>
@@ -79,9 +78,7 @@ export default function Login() {
             <div>
               <div className="flex justify-between items-center mb-1.5">
                 <label className="text-sm font-medium text-gray-700">Password</label>
-                <button type="button" onClick={() => navigate("/forgot-password")} className="text-xs text-blue-600 hover:underline">
-                  Forgot password?
-                </button>
+                <button type="button" className="text-xs text-blue-600 hover:underline">Forgot password?</button>
               </div>
               <div className="flex items-center gap-2.5 border border-gray-200 rounded-xl px-4 py-2.5 bg-gray-50 focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 transition">
                 <svg className="w-4 h-4 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -107,13 +104,7 @@ export default function Login() {
 
             {/* Remember Me */}
             <div className="flex items-center gap-2 text-sm text-gray-500">
-              <input
-                type="checkbox"
-                id="remember"
-                checked={rememberMe}
-                onChange={(e) => setRememberMe(e.target.checked)}
-                className="h-4 w-4 accent-blue-600 rounded"
-              />
+              <input type="checkbox" id="remember" checked={rememberMe} onChange={(e) => setRememberMe(e.target.checked)} className="h-4 w-4 accent-blue-600 rounded" />
               <label htmlFor="remember">Remember me on this device</label>
             </div>
 
@@ -124,32 +115,20 @@ export default function Login() {
               </div>
             )}
 
-            {/* Sign In Button */}
-            <button
-              type="button"
-              onClick={handleSubmit}
-              className="w-full bg-blue-700 hover:bg-blue-800 active:scale-[0.98] text-white font-semibold py-2.5 rounded-xl text-sm transition-all"
-            >
+            <button type="button" onClick={handleSubmit} className="w-full bg-blue-700 hover:bg-blue-800 active:scale-[0.98] text-white font-semibold py-2.5 rounded-xl text-sm transition-all">
               Sign In
             </button>
 
-            {/* Divider */}
             <div className="flex items-center gap-3">
               <div className="flex-1 h-px bg-gray-200" />
               <span className="text-xs text-gray-400 uppercase tracking-widest">New Student?</span>
               <div className="flex-1 h-px bg-gray-200" />
             </div>
 
-            {/* Create Account */}
-            <button
-              type="button"
-              onClick={() => navigate("/register")}
-              className="w-full border border-gray-200 hover:bg-gray-50 active:scale-[0.98] text-gray-700 font-semibold py-2.5 rounded-xl text-sm transition-all"
-            >
+            <button type="button" onClick={() => navigate("/register")} className="w-full border border-gray-200 hover:bg-gray-50 active:scale-[0.98] text-gray-700 font-semibold py-2.5 rounded-xl text-sm transition-all">
               Create Account
             </button>
 
-            {/* Trust Badges */}
             <div className="flex justify-center gap-6 text-xs text-gray-400 pt-1">
               <span className="flex items-center gap-1">
                 <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" /></svg>
@@ -162,16 +141,14 @@ export default function Login() {
             </div>
           </div>
 
-          {/* Footer */}
           <p className="text-center text-xs text-gray-400 mt-6">
             © 2026 Global Education Fund. All rights reserved.{" "}
-            <button type="button" onClick={() => navigate("/privacy")} className="hover:underline">Privacy Policy</button>
+            <button type="button" className="hover:underline">Privacy Policy</button>
             {" · "}
-            <button type="button" onClick={() => navigate("/terms")} className="hover:underline">Terms of Use</button>
+            <button type="button" className="hover:underline">Terms of Use</button>
           </p>
         </div>
       </div>
-
     </div>
   );
 }

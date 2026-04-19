@@ -12,4 +12,4 @@ const ProviderRoutes = () => {
   );
 };
 
-export default FarmerRoutes;
+export default ProviderRoutes;
