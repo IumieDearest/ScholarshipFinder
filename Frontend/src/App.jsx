@@ -1,7 +1,7 @@
-import Role from "./routes/Role";
+import Register from "./Pages/Register";
 
 const App = () => {
-  return <Role />;
+  return <Register/>;
 };
 
 export default App;
