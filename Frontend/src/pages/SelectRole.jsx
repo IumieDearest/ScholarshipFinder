@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 const roles = [
   {
@@ -16,7 +18,7 @@ const roles = [
     cta: "Get Started →",
   },
   {
-    id: "sponsor",
+    id: "provider",
     icon: (
       <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8}
@@ -47,12 +49,26 @@ const roles = [
 
 export default function SelectRole() {
   const [selected, setSelected] = useState(null);
+  const { setUser, user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleContinue = () => {
     if (!selected) return;
-    // TODO: save selected role to your auth context / API, then navigate
-    // e.g. updateUserRole(selected);  navigate('/dashboard');
-    alert(`Role selected: ${selected}`);
+    
+    // Update user role in auth context
+    setUser({
+      ...user,
+      role: selected,
+    });
+
+    // Navigate to appropriate dashboard based on role
+    if (selected === "student") {
+      navigate("/dashboard");
+    } else if (selected === "provider") {
+      navigate("/provider");
+    } else if (selected === "school") {
+      navigate("/school");
+    }
   };
 
   return (
@@ -166,7 +182,7 @@ export default function SelectRole() {
           {["Privacy Policy", "Terms of Service", "Cookie Policy", "Contact Us"].map((l) => (
             <a key={l} href="#" className="hover:text-blue-600 uppercase tracking-wide">{l}</a>
           ))}
-          <span>© 2024 SCHOLARSHIPFINDER · INSTITUTIONAL TRUST AND MODERN PRECISION.</span>
+          <span>© 2026 SCHOLARSHIPFINDER · INSTITUTIONAL TRUST AND MODERN PRECISION.</span>
         </div>
       </footer>
     </div>
