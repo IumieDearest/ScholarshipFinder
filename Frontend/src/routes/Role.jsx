@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-import UserRoutes from "./UserRoutes";
+import StudentsRoutes from "./StudentsRoutes";
 import AuthRoutes from "./AuthRoutes";
-import BusinessRoutes from "./BusinessRoutes";
+import ProviderRoutes from "./ProvideerRoutes";
 
 const Role = () => {
   const { user } = useContext(AuthContext);
 
-  if (user && user.role == "traveler") return <UserRoutes />;
-  if (user && user.role == "business") return <BusinessRoutes />;
+  if (user && user.role == "student") return <StudentsRoutes />;
+  if (user && user.role == "provider") return <ProviderRoutes />;
   if (!user) return <AuthRoutes />;
   return null;
 };
