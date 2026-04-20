@@ -10,7 +10,7 @@ const scholarships = [
     posted: "2h ago",
     description:
       "Supporting future innovators in engineering and computer science. This merit-based award covers full tuition and a $5,000 annual stipend for research projects.",
-    deadline: "Oct 15, 2025",
+    deadline: "June 15, 2026",
     deadlineUrgency: "urgent",
     image: null,
     imageBg: "bg-teal-500",
@@ -25,7 +25,7 @@ const scholarships = [
     posted: "5h ago",
     description:
       "A scholarship for students pursuing degrees in fine arts, digital media, or design. Requires a portfolio submission of at least 5 original works.",
-    deadline: "Nov 01, 2025",
+    deadline: "Augutst 01, 2026",
     deadlineUrgency: "normal",
     image: null,
     imageBg: null,
@@ -40,7 +40,7 @@ const scholarships = [
     posted: "1d ago",
     description:
       "Designed for students who demonstrate exceptional community service and leadership potential within their local communities.",
-    deadline: "Dec 20, 2025",
+    deadline: "August 20, 2026",
     deadlineUrgency: "safe",
     image: null,
     imageBg: "bg-slate-800",
@@ -49,9 +49,9 @@ const scholarships = [
 ];
 
 const recommendedSchools = [
-  { name: "Stanford University", location: "California, USA", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Stanford_Cardinal_logo.svg/240px-Stanford_Cardinal_logo.svg.png" },
-  { name: "MIT Tech", location: "Massachusetts, USA", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/MIT_logo.svg/240px-MIT_logo.svg.png" },
-  { name: "ETH Zurich", location: "Zurich, Switzerland", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/ETH_Z%C3%BCrich_Logo_black.svg/240px-ETH_Z%C3%BCrich_Logo_black.svg.png" },
+  { name: "Cebu Eastern College", location: "Kilat St., Pahina Central, Cebu City, Cebu", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Stanford_Cardinal_logo.svg/240px-Stanford_Cardinal_logo.svg.png" },
+  { name: "University of the Philippines", location: "Gorordo Avenue, Lahug, Cebu City, Cebu", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/MIT_logo.svg/240px-MIT_logo.svg.png" },
+  { name: "Cebu Normal University", location: "Osmeña Blvd, Cebu City, Cebu", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/ETH_Z%C3%BCrich_Logo_black.svg/240px-ETH_Z%C3%BCrich_Logo_black.svg.png" },
 ];
 
 const upcomingDeadlines = [
@@ -72,10 +72,6 @@ const navItems = [
   {
     label: "Applications", active: false,
     icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>,
-  },
-  {
-    label: "Preferences", active: false,
-    icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>,
   },
 ];
 
@@ -171,37 +167,6 @@ export default function StudentDashboard() {
 
         {/* Main Feed */}
         <main className="space-y-4">
-
-          {/* Search filters */}
-          <div className="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm">
-            <div className="flex items-center gap-3 mb-4 pb-3 border-b border-gray-100">
-              <div className="w-9 h-9 rounded-xl bg-orange-50 flex items-center justify-center">
-                <svg className="w-5 h-5 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-              </div>
-              <input
-                type="text"
-                placeholder="What are you looking for today?"
-                className="flex-1 outline-none text-sm text-gray-600 placeholder:text-gray-400"
-              />
-            </div>
-            <div className="flex gap-4">
-              {[
-                { label: "Full Tuition", icon: "🎓" },
-                { label: "International", icon: "🌍" },
-                { label: "All Filters", icon: "⚙️", isFilter: true },
-              ].map((f) => (
-                <button
-                  key={f.label}
-                  className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-gray-50 hover:bg-blue-50 hover:text-blue-600 text-gray-600 border border-gray-200 transition"
-                >
-                  <span>{f.icon}</span>
-                  {f.label}
-                </button>
-              ))}
-            </div>
-          </div>
 
           {/* Scholarship Cards */}
           {cards
@@ -321,7 +286,7 @@ export default function StudentDashboard() {
             {["Privacy", "Terms", "Advertising", "Cookies"].map((l) => (
               <a key={l} href="#" className="hover:text-blue-500 transition">{l}</a>
             ))}
-            <span className="w-full">ScholarshipFinder © 2025</span>
+            <span className="w-full">ScholarshipFinder © 2026</span>
           </div>
         </aside>
 
