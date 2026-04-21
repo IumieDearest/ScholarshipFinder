@@ -23,7 +23,7 @@ export default function Login() {
     }
 
     setUser({ role: "student", name: "Student", email });
-    navigate("/dashboard");
+    navigate("/feed");
   };
 
   return (
