@@ -286,21 +286,6 @@ export default function StudentFeed() {
                           Deadline: {card.deadline}
                         </span>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <button
-                          onClick={() => toggleSave(card.id)}
-                          className={`px-5 py-2 rounded-xl text-sm font-semibold border transition ${
-                            card.saved
-                              ? "bg-blue-50 text-blue-600 border-blue-200"
-                              : "bg-white text-gray-700 border-gray-200 hover:bg-gray-50"
-                          }`}
-                        >
-                          {card.saved ? "Saved ✓" : "Save"}
-                        </button>
-                        <button className="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 active:scale-95 text-white text-sm font-semibold transition-all">
-                          Apply
-                        </button>
-                      </div>
                     </div>
                   </div>
                 </div>
