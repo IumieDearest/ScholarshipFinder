@@ -63,7 +63,7 @@ export default function SelectRole() {
 
     // Navigate to appropriate dashboard based on role
     if (selected === "student") {
-      navigate("/dashboard");
+      navigate("/feed");
     } else if (selected === "provider") {
       navigate("/provider");
     } else if (selected === "school") {

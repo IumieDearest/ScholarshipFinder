@@ -1,4 +1,3 @@
-
 function App({Scholar}) {
     return (
         <div className="scholarship-list">
