@@ -1,8 +1,3 @@
-// src/pages/student/Applications.jsx
-//
-// "Manage Your Journey" applications page (Image 2).
-// IMPORTS Sidebar for shared navigation.
-
 import Sidebar from "../../components/Students/Sidebar";
 
 const activeApps = [
