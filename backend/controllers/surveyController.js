@@ -1,6 +1,3 @@
-// controllers/surveyController.js
-// Survey handling: save survey responses, check completion
-
 import { getDatabase } from '../config/database.js';
 import { generateId } from '../utils/helpers.js';
 

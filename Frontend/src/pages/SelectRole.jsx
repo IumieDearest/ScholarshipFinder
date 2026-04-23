@@ -11,7 +11,7 @@ const roles = [
           d="M12 14l9-5-9-5-9 5 9 5zm0 0v6m-4-3.27l4 2.27 4-2.27" />
       </svg>
     ),
-    title: "iStudent",
+    title: "Student",
     badge: "SCHOLARSHIP SEEKER",
     description:
       "Access thousands of vetted funding opportunities. Build your academic profile, match with sponsors, and track application milestones in real-time.",
@@ -25,7 +25,7 @@ const roles = [
           d="M17 20h5v-2a4 4 0 00-4-4h-1M9 20H4v-2a4 4 0 014-4h1m4-4a4 4 0 100-8 4 4 0 000 8zm6 4a2 2 0 100-4 2 2 0 000 4zM3 18a2 2 0 100-4 2 2 0 000 4z" />
       </svg>
     ),
-    title: "iSponsor",
+    title: "Sponsor",
     badge: "SCHOLARSHIP PROVIDER",
     description:
       "Design and launch global scholarship programs. Use advanced filtering to find high-potential candidates and manage institutional disbursement with precision.",
@@ -39,7 +39,7 @@ const roles = [
           d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
       </svg>
     ),
-    title: "iSchool",
+    title: "School",
     badge: "VERIFIER",
     description:
       "Verify academic credentials and enrollment status for scholarship recipients. Streamline administrative overhead with automated institutional workflows.",
