@@ -14,6 +14,11 @@ export async function comparePassword(password, hash) {
   return bcrypt.compare(password, hash);
 }
 
+export function formatUserResponse(user) {
+  const { password, ...userWithoutPassword } = user;
+  return userWithoutPassword;
+}
+
 export function generateToken(user, secret) {
   return jwt.sign(
     {

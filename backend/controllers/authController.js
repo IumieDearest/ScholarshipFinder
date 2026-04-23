@@ -125,12 +125,12 @@ export async function getCurrentUser(req, res) {
     const user = await db.get('SELECT id, name, email, accountType, profilePicture, bio FROM users WHERE id = ?', [req.user.id]);
 
     if (!user) {
-      return res.status(404).json({ error: 'User not found' });
+      return res.status(404).json({ message: 'User not found' });
     }
 
     res.json({ user });
   } catch (error) {
     console.error('Get current user error:', error);
-    res.status(500).json({ error: 'Failed to fetch user' });
+    res.status(500).json({ message: 'Failed to fetch user' });
   }
 }

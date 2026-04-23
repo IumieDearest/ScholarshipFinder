@@ -1,32 +1,28 @@
+// middleware/auth.js
 import jwt from 'jsonwebtoken';
 
 export function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
+  const token = authHeader && authHeader.split(' ')[1]; // "Bearer TOKEN"
 
   if (!token) {
-    return res.status(401).json({ error: 'Access token required' });
+    return res.status(401).json({ message: 'Access token required' });
   }
 
   jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
     if (err) {
-      return res.status(403).json({ error: 'Invalid or expired token' });
+      return res.status(403).json({ message: 'Invalid or expired token' });
     }
     req.user = user;
     next();
   });
 }
 
-export function requireRole(roles) {
+export function requireRole(allowedRoles) {
   return (req, res, next) => {
-    if (!req.user) {
-      return res.status(401).json({ error: 'Authentication required' });
+    if (!allowedRoles.includes(req.user.accountType)) {
+      return res.status(403).json({ message: 'Insufficient permissions' });
     }
-
-    if (!roles.includes(req.user.accountType)) {
-      return res.status(403).json({ error: 'Insufficient permissions' });
-    }
-
     next();
   };
 }
