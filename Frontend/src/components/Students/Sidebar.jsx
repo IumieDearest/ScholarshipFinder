@@ -59,7 +59,7 @@ export default function Sidebar() {
                 <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z" />
               </svg>
             </div>
-            <span className="font-bold text-gray-800">Glaux</span>
+            <span className="font-bold text-gray-800">ScholarshipFinder</span>
           </button>
         </div>
 

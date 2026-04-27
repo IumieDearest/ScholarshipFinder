@@ -6,7 +6,7 @@ const ProviderRoutes = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/providerdashboard" element={<ProviderDashboard />} />
+        <Route path="/dashboard" element={<ProviderDashboard />} />
         <Route path="/provider" element={<ProviderDashboard />} />
         <Route path="*" element={<Navigate to="/dashboard" />} />
       </Routes>
