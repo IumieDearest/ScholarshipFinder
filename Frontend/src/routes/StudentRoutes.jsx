@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import StudentFeed      from "../components/Students/StudentFeed";
-import StudentDashboard from "../components/Students/StudentDashboard";
+import StudentFeed      from "../pages/Student/StudentFeed";
+import StudentDashboard from "../pages/Student/StudentDashboard";
 import Applications     from "../pages/student/Applications";
 import Documents        from "../pages/student/Documents";
 
