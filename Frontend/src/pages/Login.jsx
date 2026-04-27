@@ -36,7 +36,7 @@ export default function Login() {
         body: JSON.stringify({
           email: email,
           password: password,
-        }),
+        } ),
       });
 
       const data = await response.json();
@@ -69,14 +69,14 @@ export default function Login() {
       setStatus("success");
       setMessage("Login successful! Redirecting...");
 
-      // Redirect based on account type (BACKEND REMEMBERS THE ROLE)
+      // Redirect based on account type - FIXED PATHS
       setTimeout(() => {
         if (data.user.accountType === "Student") {
           navigate("/feed");
         } else if (data.user.accountType === "School") {
-          navigate("/school-dashboard");
+          navigate("/dashboard");
         } else if (data.user.accountType === "Provider") {
-          navigate("/provider-dashboard");
+          navigate("/dashboard");
         } else {
           navigate("/");
         }

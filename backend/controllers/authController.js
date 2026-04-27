@@ -22,8 +22,8 @@ export async function register(req, res) {
     const db = getDatabase();
 
     // Check if email already exists
-    const existingUser = await db.get('SELECT id FROM users WHERE email = ?', [email]);
-    if (existingUser) {
+    const [existingUsers] = await db.execute('SELECT id FROM users WHERE email = ?', [email]);
+    if (existingUsers.length > 0) {
       return res.status(409).json({ message: 'Email already registered' });
     }
 
@@ -34,7 +34,7 @@ export async function register(req, res) {
     const userId = generateId();
     const now = new Date().toISOString();
 
-    await db.run(
+    await db.execute(
       `INSERT INTO users (id, name, email, password, accountType, createdAt, updatedAt)
        VALUES (?, ?, ?, ?, ?, ?, ?)`,
       [userId, name, email, hashedPassword, accountType, now, now]
@@ -43,7 +43,7 @@ export async function register(req, res) {
     // If student, create student profile
     if (accountType === 'Student') {
       const profileId = generateId();
-      await db.run(
+      await db.execute(
         `INSERT INTO studentProfiles (id, userId, createdAt, updatedAt)
          VALUES (?, ?, ?, ?)`,
         [profileId, userId, now, now]
@@ -80,10 +80,12 @@ export async function login(req, res) {
     const db = getDatabase();
 
     // Find user
-    const user = await db.get('SELECT * FROM users WHERE email = ?', [email]);
-    if (!user) {
+    const [users] = await db.execute('SELECT * FROM users WHERE email = ?', [email]);
+    if (users.length === 0) {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
+
+    const user = users[0];
 
     // Verify password
     const passwordMatch = await comparePassword(password, user.password);
@@ -122,13 +124,13 @@ export async function logout(req, res) {
 export async function getCurrentUser(req, res) {
   try {
     const db = getDatabase();
-    const user = await db.get('SELECT id, name, email, accountType, profilePicture, bio FROM users WHERE id = ?', [req.user.id]);
+    const [users] = await db.execute('SELECT id, name, email, accountType, profilePicture, bio FROM users WHERE id = ?', [req.user.id]);
 
-    if (!user) {
+    if (users.length === 0) {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    res.json({ user });
+    res.json({ user: users[0] });
   } catch (error) {
     console.error('Get current user error:', error);
     res.status(500).json({ message: 'Failed to fetch user' });

@@ -124,7 +124,7 @@ export default function ScholarshipSurvey({ onComplete }) {
                   className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 >
                   <option value="">Select a field...</option>
-                  <option value="STEM">STEM (Science, Technology, Engineering, Math)</option>
+                  <option value="Computer">Computer Studies</option>
                   <option value="Business">Business & Economics</option>
                   <option value="Arts">Arts & Humanities</option>
                   <option value="Social">Social Sciences</option>
@@ -188,6 +188,7 @@ export default function ScholarshipSurvey({ onComplete }) {
                 >
                   <option value="">Select or skip...</option>
                   <option value="Filipino">Filipino</option>
+                  <option value="American">American</option>
                   <option value="Asian">Asian</option>
                   <option value="Hispanic">Hispanic</option>
                   <option value="African">African</option>
