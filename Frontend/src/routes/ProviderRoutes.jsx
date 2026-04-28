@@ -7,7 +7,8 @@ const ProviderRoutes = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/dashboard" element={<ProviderDashboard />} />
-        <Route path="/provider" element={<ProviderDashboard />} />
+        <Route path="/applicant-queue" element={<ProviderApplicantQueue />} />
+        <Route path="/active-scholarships" element={<ProviderActiveScholarships />} />
         <Route path="*" element={<Navigate to="/dashboard" />} />
       </Routes>
     </BrowserRouter>

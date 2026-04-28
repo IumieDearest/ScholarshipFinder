@@ -9,30 +9,11 @@ export default function ProviderSidebar() {
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
 
   const menuItems = [
-    {
-      label: "Applicant Queue",
-      icon: "👥",
-      path: "/provider/applicants",
-      badge: "28"
-    },
-    {
-      label: "Active Scholarships",
-      icon: "📚",
-      path: "/provider/scholarships",
-      badge: "12"
-    },
-    {
-      label: "Verification Center",
-      icon: "✅",
-      path: "/provider/verification",
-      badge: "5"
-    },
-    {
-      label: "Reports",
-      icon: "📈",
-      path: "/provider/reports",
-      badge: null
-    }
+    { label: "Dashboard", path: "/dashboard", icon: "📊" },
+    { label: "Applicant Queue", path: "/applicant-queue", icon: "👥" },
+    { label: "Active Scholarships", path: "/active-scholarships", icon: "📚" },
+    { label: "Verification Center", path: "/verification", icon: "✅" },
+    { label: "Reports", path: "/reports", icon: "📈" }
   ];
 
   // Get user initials for avatar
