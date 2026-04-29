@@ -223,7 +223,7 @@ export default function Login() {
           </form>
 
           <p className="text-center text-xs text-gray-400 mt-6">
-            © 2026 Global Education Fund. All rights reserved.{" "}
+            © 2026 ScholarshipFinder. All rights reserved.{" "}
             <button type="button" className="hover:underline">Privacy Policy</button>
             {" · "}
             <button type="button" className="hover:underline">Terms of Use</button>

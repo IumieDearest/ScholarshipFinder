@@ -10,20 +10,20 @@ export default function ProviderApplicantQueue() {
     {
       id: 1,
       name: "Elena Rodriguez",
-      studentId: "2024-001",
+      studentId: "2025-001",
       institution: "University of Santo Tomas",
       scholarshipType: "STEM EXCELLENCE",
-      submissionDate: "Oct 01, 2023",
+      submissionDate: "May 01, 2026",
       status: "Under Review",
       statusColor: "blue"
     },
     {
       id: 2,
       name: "Marcus Chen",
-      studentId: "2024-002",
+      studentId: "2025-002",
       institution: "Ateneo de Manila University",
       scholarshipType: "FINANCIAL AID",
-      submissionDate: "Sep 28, 2023",
+      submissionDate: "April 28, 2026",
       status: "Awarded",
       statusColor: "green"
     },
