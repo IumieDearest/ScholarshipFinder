@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ProviderSidebar from "../../components/Providers/ProviderSidebar";
 
 export default function ProviderApplicantQueue() {
   const [activeTab, setActiveTab] = useState("Provider Verification");
@@ -30,20 +31,20 @@ export default function ProviderApplicantQueue() {
     {
       id: 3,
       name: "Sophia Lim",
-      studentId: "2024-003",
+      studentId: "2025-003",
       institution: "De La Salle University",
       scholarshipType: "ARTS & CULTURE",
-      submissionDate: "Sep 25, 2023",
+      submissionDate: "Sep 25, 2026",
       status: "Pending Documents",
       statusColor: "gray"
     },
     {
       id: 4,
       name: "Jordan Bautista",
-      studentId: "2024-004",
+      studentId: "2025-004",
       institution: "UP Diliman",
       scholarshipType: "STEM EXCELLENCE",
-      submissionDate: "Sep 22, 2023",
+      submissionDate: "April 22, 2026",
       status: "Under Review",
       statusColor: "blue"
     }
@@ -139,7 +140,7 @@ export default function ProviderApplicantQueue() {
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zm-11-1a1 1 0 11-2 0 1 1 0 012 0z" clipRule="evenodd" />
             </svg>
-            Managing active scholarship applications for the 2024-2025 cycle.
+            Managing active scholarship applications for the 2025-2026 cycle.
           </p>
         </div>
 

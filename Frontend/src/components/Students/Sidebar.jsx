@@ -1,5 +1,6 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 // All nav items — path must match what's in StudentRoutes.jsx
 const navItems = [
@@ -59,8 +60,12 @@ const navItems = [
 export default function Sidebar() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { user, setUser } = useContext(AuthContext);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
+
+  // Get user info from context or localStorage
+  const userInfo = user || JSON.parse(localStorage.getItem("user") || "{}");
 
   const isActive = (path) => location.pathname === path;
 
@@ -73,6 +78,36 @@ export default function Sidebar() {
     navigate(path);
     setProfileMenuOpen(false);
     setSidebarOpen(false);
+  };
+
+  const handleLogout = () => {
+    // Clear all auth data from localStorage
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    localStorage.removeItem("accountType");
+    localStorage.removeItem("rememberMe");
+    localStorage.removeItem("rememberedEmail");
+
+    // Clear context
+    setUser(null);
+
+    // Close all menus
+    setSidebarOpen(false);
+    setProfileMenuOpen(false);
+
+    // Redirect to login
+    navigate("/login");
+  };
+
+  // Get user initials for avatar
+  const getInitials = (name) => {
+    if (!name) return "U";
+    return name
+      .split(" ")
+      .map((n) => n[0])
+      .join("")
+      .toUpperCase()
+      .slice(0, 1);
   };
 
   return (
@@ -108,15 +143,15 @@ export default function Sidebar() {
 
       {/* ── MOBILE SIDEBAR DRAWER (slides from left) ── */}
       {sidebarOpen && (
-        <div className="md:hidden fixed inset-0 z-30">
+        <div className="md:hidden fixed inset-0 z-30 animate-slideIn">
           {/* Overlay */}
           <div
-            className="absolute inset-0 bg-black/50"
+            className="absolute inset-0 bg-black/50 animate-fadeIn"
             onClick={() => setSidebarOpen(false)}
           />
 
           {/* Drawer */}
-          <div className="absolute left-0 top-0 bottom-0 w-64 bg-white border-r border-gray-200 flex flex-col overflow-y-auto">
+          <div className="absolute left-0 top-0 bottom-0 w-64 bg-white border-r border-gray-200 flex flex-col overflow-y-auto animate-slideInLeft">
             {/* User Profile - CLICKABLE */}
             <div className="relative">
               <button
@@ -124,11 +159,11 @@ export default function Sidebar() {
                 className="w-full flex items-center gap-3 px-5 py-6 hover:bg-gray-50 transition-colors border-b border-gray-100"
               >
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 overflow-hidden flex items-center justify-center text-sm font-bold text-white flex-shrink-0">
-                  A
+                  {getInitials(userInfo.name)}
                 </div>
                 <div className="flex-1 text-left">
-                  <p className="text-sm font-semibold text-gray-800 leading-tight">Anna Mae Regis</p>
-                  <p className="text-xs text-gray-400">ID: 200513291</p>
+                  <p className="text-sm font-semibold text-gray-800 leading-tight">{userInfo.name || "Student"}</p>
+                  <p className="text-xs text-gray-400">{userInfo.email || "ID: N/A"}</p>
                 </div>
               </button>
 
@@ -201,7 +236,10 @@ export default function Sidebar() {
                 </svg>
                 Support
               </button>
-              <button className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-100 w-full text-left transition-colors">
+              <button
+                onClick={handleLogout}
+                className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-red-500 hover:bg-red-50 w-full text-left transition-colors"
+              >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                 </svg>
@@ -222,11 +260,11 @@ export default function Sidebar() {
             className="w-full flex items-center gap-3 px-5 py-6 hover:bg-gray-50 transition-colors border-b border-gray-100"
           >
             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 overflow-hidden flex items-center justify-center text-sm font-bold text-white flex-shrink-0 hover:shadow-md transition-shadow">
-              A
+              {getInitials(userInfo.name)}
             </div>
             <div className="flex-1 text-left">
-              <p className="text-sm font-semibold text-gray-800 leading-tight">Anna Mae Regis</p>
-              <p className="text-xs text-gray-400">ID: 200513291</p>
+              <p className="text-sm font-semibold text-gray-800 leading-tight">{userInfo.name || "Student"}</p>
+              <p className="text-xs text-gray-400">{userInfo.email || "ID: N/A"}</p>
             </div>
           </button>
 
@@ -260,16 +298,25 @@ export default function Sidebar() {
                 </svg>
                 Documents
               </button>
+              <button
+                onClick={handleLogout}
+                className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 text-left transition-colors"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+                Sign Out
+              </button>
             </div>
           )}
         </div>
 
-        {/* Nav links - SCROLLABLE INDEPENDENTLY, FILLS SPACE */}
-        <nav className="flex-1 px-3 py-3 space-y-0.5 overflow-y-auto">
+        {/* Navigation Links */}
+        <nav className="flex-1 px-3 py-3 space-y-0.5">
           {navItems.map((item) => (
             <button
               key={item.path}
-              onClick={() => navigate(item.path)}
+              onClick={() => handleNavClick(item.path)}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium w-full text-left transition-colors ${
                 isActive(item.path)
                   ? "bg-blue-600 text-white"
@@ -282,7 +329,7 @@ export default function Sidebar() {
           ))}
         </nav>
 
-        {/* Bottom links - FIXED at bottom, NO SCROLL */}
+        {/* Bottom Links - FIXED at bottom */}
         <div className="px-3 pb-3 space-y-0.5 border-t border-gray-100 pt-3 flex-shrink-0">
           <button className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-100 w-full text-left transition-colors">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -290,7 +337,10 @@ export default function Sidebar() {
             </svg>
             Support
           </button>
-          <button className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-500 hover:bg-gray-100 w-full text-left transition-colors">
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-red-500 hover:bg-red-50 w-full text-left transition-colors"
+          >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
             </svg>
@@ -299,8 +349,36 @@ export default function Sidebar() {
         </div>
       </aside>
 
-      {/* ── Spacer for fixed sidebar (prevents content from overlapping) ── */}
-      <div className="hidden md:block w-56 flex-shrink-0" />
+      {/* CSS Animations */}
+      <style>{`
+        @keyframes slideInLeft {
+          from {
+            transform: translateX(-100%);
+            opacity: 0;
+          }
+          to {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        .animate-slideInLeft {
+          animation: slideInLeft 0.3s ease-out;
+        }
+
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out;
+        }
+      `}</style>
     </>
   );
 }
