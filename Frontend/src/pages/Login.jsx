@@ -27,7 +27,6 @@ export default function Login() {
     setLoading(true);
 
     try {
-      // Call backend API to login
       const response = await fetch("http://localhost:5000/api/auth/login", {
         method: "POST",
         headers: {

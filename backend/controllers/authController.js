@@ -50,6 +50,16 @@ export async function register(req, res) {
       );
     }
 
+    // If school, create school profile // Added school profile creation
+    if (accountType === 'School') {
+      const schoolProfileId = generateId();
+      await db.execute(
+        `INSERT INTO schoolprofiles (id, userId, schoolName, createdAt, updatedAt)
+         VALUES (?, ?, ?, ?, ?)`,
+        [schoolProfileId, userId, name, now, now]
+      );
+    }
+
     // Generate token
     const token = jwt.sign(
       { id: userId, email, accountType, name },

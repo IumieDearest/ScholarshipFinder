@@ -75,7 +75,7 @@ export default function SchoolDashboard() {
       status: "ACTIVE",
       engagement: "HIGH ENGAGEMENT",
       applicants: 428,
-      deadline: "Nov 15, 2024"
+      deadline: "July 15, 2026"
     },
     {
       id: 2,
@@ -83,7 +83,7 @@ export default function SchoolDashboard() {
       status: "ACTIVE",
       engagement: "HIGH ENGAGEMENT",
       applicants: 1104,
-      deadline: "Nov 02, 2024"
+      deadline: "May 02, 2026"
     },
     {
       id: 3,
@@ -91,7 +91,7 @@ export default function SchoolDashboard() {
       status: "ACTIVE",
       engagement: "PAUSED",
       applicants: 89,
-      deadline: "Dec 12, 2024"
+      deadline: "June 12, 2026"
     }
   ];
 
@@ -109,10 +109,10 @@ export default function SchoolDashboard() {
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="flex h-screen bg-gray-50">
       <SchoolSidebar />
 
-      <main className="flex-1 flex flex-col">
+      <main className="flex-1 md:ml-64 flex flex-col h-screen overflow-hidden">
         {/* Top Navigation */}
         <div className="bg-white border-b border-gray-200 px-8 py-4">
           <div className="flex items-center justify-between mb-6">
@@ -132,7 +132,7 @@ export default function SchoolDashboard() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
               </button>
-              <div className="w-10 h-10 rounded-full bg-green-600 flex items-center justify-center text-white font-semibold cursor-pointer hover:bg-green-700 transition-colors">
+              <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-semibold cursor-pointer hover:bg-blue-700 transition-colors">
                 {user?.name?.charAt(0) || "S"}
               </div>
             </div>
@@ -145,7 +145,7 @@ export default function SchoolDashboard() {
                 key={tab}
                 className={`pb-3 px-1 font-medium text-sm transition-colors ${
                   activeTab === tab.toLowerCase().replace(" ", "-")
-                    ? "text-green-600 border-b-2 border-green-600"
+                    ? "text-blue-600 border-b-2 border-blue-600"
                     : "text-gray-600 hover:text-gray-900"
                 }`}
                 onClick={() => setActiveTab(tab.toLowerCase().replace(" ", "-"))}
@@ -158,7 +158,7 @@ export default function SchoolDashboard() {
                 <input
                   type="text"
                   placeholder="Search applications..."
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <svg className="w-5 h-5 text-gray-400 absolute right-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -169,7 +169,7 @@ export default function SchoolDashboard() {
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 p-8 overflow-y-auto">
+        <div className="flex-1 p-8 overflow-y-auto custom-scrollbar">
           
           {/* Stats Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
@@ -214,7 +214,7 @@ export default function SchoolDashboard() {
                       <tr key={applicant.id} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-full bg-green-600 text-white flex items-center justify-center font-semibold text-sm">
+                            <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-semibold text-sm">
                               {applicant.name.charAt(0)}
                             </div>
                             <span className="font-medium text-gray-900">{applicant.name}</span>
@@ -229,7 +229,7 @@ export default function SchoolDashboard() {
                           </span>
                         </td>
                         <td className="px-6 py-4 text-center">
-                          <button className="text-green-600 hover:text-green-700 font-medium text-sm">
+                          <button className="text-blue-600 hover:text-blue-700 font-medium text-sm">
                             {applicant.action}
                           </button>
                         </td>
@@ -244,7 +244,7 @@ export default function SchoolDashboard() {
                 <p className="text-sm text-gray-600">Showing 1-4 of 1,284 applications</p>
                 <div className="flex gap-2">
                   <button className="px-3 py-1 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-50">←</button>
-                  <button className="px-3 py-1 bg-green-600 text-white rounded-lg">1</button>
+                  <button className="px-3 py-1 bg-blue-600 text-white rounded-lg">1</button>
                   <button className="px-3 py-1 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-50">2</button>
                   <button className="px-3 py-1 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-50">3</button>
                   <button className="px-3 py-1 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-50">→</button>
@@ -264,14 +264,14 @@ export default function SchoolDashboard() {
                       <p className="font-medium text-gray-900">{scholarship.title}</p>
                       <p className="text-sm text-gray-500">{scholarship.applicants} applicants</p>
                     </div>
-                    <span className={`px-2 py-1 rounded-full text-xs font-semibold ${scholarship.status === "ACTIVE" ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"}`}>
+                    <span className={`px-2 py-1 rounded-full text-xs font-semibold ${scholarship.status === "ACTIVE" ? "bg-blue-100 text-blue-700" : "bg-red-100 text-red-700"}`}>
                       {scholarship.status}
                     </span>
                   </div>
                 ))}
               </div>
               <div className="px-6 py-4 border-t border-gray-200">
-                <button className="w-full text-green-600 hover:text-green-700 font-medium text-sm">View All Scholarships</button>
+                <button className="w-full text-blue-600 hover:text-blue-700 font-medium text-sm">View All Scholarships</button>
               </div>
             </div>
           </div>

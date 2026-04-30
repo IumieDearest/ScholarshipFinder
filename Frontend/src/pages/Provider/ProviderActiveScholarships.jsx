@@ -13,7 +13,7 @@ export default function ProviderActiveScholarships() {
       isActive: true,
       applicants: 428,
       maxApplicants: 500,      
-      deadline: "2024-10-15",  
+      deadline: "2026-10-15",  
       applicantsChange: "+12%",
       categoryColor: "blue"
     },
@@ -25,7 +25,7 @@ export default function ProviderActiveScholarships() {
       isActive: true,
       applicants: 1104,
       maxApplicants: 1500,
-      deadline: "2024-11-02",
+      deadline: "2026-11-02",
       applicantsChange: "+8%",
       categoryColor: "green"
     }

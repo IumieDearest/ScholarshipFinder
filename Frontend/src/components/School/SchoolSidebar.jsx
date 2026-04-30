@@ -64,7 +64,7 @@ export default function SchoolSidebar() {
       {/* Mobile Top Bar */}
       <div className="md:hidden fixed top-0 left-0 right-0 bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between z-40">
         <button onClick={() => setSidebarOpen(!sidebarOpen)} className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center text-white text-xs font-bold">SF</div>
+          <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white text-xs font-bold">SF</div>
         </button>
         <button onClick={() => setSidebarOpen(!sidebarOpen)} className="text-gray-500 p-2">
           {sidebarOpen ? (
@@ -86,10 +86,10 @@ export default function SchoolSidebar() {
         
         {/* Logo Section */}
         <div className="px-6 py-6 border-b border-gray-100 flex items-center gap-3">
-          <div className="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center text-white font-bold">SF</div>
+          <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">SF</div>
           <div>
             <p className="font-bold text-gray-900">ScholarshipFinder</p>
-            <p className="text-[10px] text-green-600 font-bold tracking-widest uppercase">School Portal</p>
+            <p className="text-[10px] text-blue-600 font-bold tracking-widest uppercase">School Portal</p>
           </div>
         </div>
 
@@ -104,7 +104,7 @@ export default function SchoolSidebar() {
               }}
               className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
                 isActive(item.path)
-                  ? "bg-green-600 text-white shadow-md shadow-green-100"
+                  ? "bg-blue-600 text-white shadow-md shadow-blue-100"
                   : "text-gray-600 hover:bg-gray-50"
               }`}
             >
@@ -116,7 +116,7 @@ export default function SchoolSidebar() {
 
         {/* Bottom Section - Fixed at bottom */}
         <div className="p-4 border-t border-gray-100 space-y-4 bg-white">
-          <button className="w-full bg-green-600 text-white text-sm font-semibold py-2.5 px-4 rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center gap-2 shadow-lg shadow-green-100">
+          <button className="w-full bg-blue-600 text-white text-sm font-semibold py-2.5 px-4 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2 shadow-lg shadow-blue-100">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
             </svg>
@@ -128,7 +128,7 @@ export default function SchoolSidebar() {
               onClick={() => setProfileMenuOpen(!profileMenuOpen)}
               className="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 transition-colors text-left"
             >
-              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center text-white font-bold text-sm">
+              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold text-sm">
                 {getInitials(userInfo.name)}
               </div>
               <div className="flex-1 min-w-0">

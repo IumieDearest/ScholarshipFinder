@@ -130,15 +130,12 @@ export default function Documents() {
   );
 
   return (
-    // Added h-screen and overflow-hidden to prevent body scroll
     <div className="flex h-screen bg-gray-50 overflow-hidden">
       <Sidebar />
 
-      {/* Changed md:ml-64 to md:ml-56 to match the Student Sidebar width */}
-      <main className="flex-1 md:ml-56 flex flex-col h-full overflow-hidden">
-        {/* Scrollable Content Container - Added to match reference */}
-        <div className="flex-1 p-6 md:p-8 overflow-y-auto custom-scrollbar">
-          {/* Page heading */}
+      {/* Single main element with scrolling */}
+      <main className="flex-1 md:ml-56 overflow-y-auto custom-scrollbar">
+        <div className="p-6 md:p-8">
           <div className="flex items-start justify-between mb-7">
             <div>
               <h1 className="text-3xl font-extrabold text-gray-900">Document Repository</h1>
