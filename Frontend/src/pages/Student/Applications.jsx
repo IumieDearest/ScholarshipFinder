@@ -37,12 +37,15 @@ const history = [
 
 export default function Applications() {
     return (
-        <div className="flex min-h-screen bg-gray-50">
+        // Added h-screen and overflow-hidden to prevent body scroll
+        <div className="flex h-screen bg-gray-50 overflow-hidden">
             <Sidebar />
 
-            <main className="flex-1 flex flex-col">
+            {/* Reverted to md:ml-64 to match the working StudentDashboard.jsx exactly */}
+            <main className="flex-1 md:ml-64 flex flex-col h-full overflow-hidden">
 
-                <div className="flex-1 p-6 md:p-8">
+                {/* Scrollable Content Container - Added to match reference */}
+                <div className="flex-1 p-6 md:p-8 overflow-y-auto custom-scrollbar">
 
                     {/* Page heading */}
                     <div className="flex items-start justify-between mb-7">

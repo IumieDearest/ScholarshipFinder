@@ -109,10 +109,12 @@ export default function ProviderDashboard() {
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    // Added h-screen and overflow-hidden to prevent body scroll
+    <div className="flex h-screen bg-gray-50 overflow-hidden">
       <ProviderSidebar />
 
-      <main className="flex-1 flex flex-col">
+      {/* Added md:ml-64 for sidebar spacing and overflow-hidden for internal scroll */}
+      <main className="flex-1 md:ml-64 flex flex-col h-full overflow-hidden">
         {/* Top Navigation */}
         <div className="bg-white border-b border-gray-200 px-8 py-4">
           <div className="flex items-center justify-between mb-6">
@@ -168,8 +170,8 @@ export default function ProviderDashboard() {
           </div>
         </div>
 
-        {/* Main Content */}
-        <div className="flex-1 p-8 overflow-y-auto">
+        {/* Scrollable Content Container - Added to match reference */}
+        <div className="flex-1 p-8 overflow-y-auto custom-scrollbar">
           
           {/* Stats Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
@@ -256,61 +258,34 @@ export default function ProviderDashboard() {
             <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
               <div className="px-6 py-4 border-b border-gray-200">
                 <h2 className="font-bold text-gray-900 text-lg">Active Scholarships</h2>
-                <p className="text-sm text-gray-600 mt-1">Manage your active scholarship listings</p>
               </div>
-
-              <div className="divide-y divide-gray-200">
+              <div className="p-6 space-y-6">
                 {activeScholarships.map((scholarship) => (
-                  <div key={scholarship.id} className="px-6 py-4 hover:bg-gray-50 transition-colors">
-                    <div className="flex items-start justify-between mb-3">
-                      <h3 className="font-semibold text-gray-900">{scholarship.title}</h3>
-                      <button className="text-gray-400 hover:text-gray-600">
-                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+                  <div key={scholarship.id} className="border-b border-gray-100 last:border-0 pb-6 last:pb-0">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-[10px] font-bold text-blue-600 uppercase tracking-widest">{scholarship.status}</span>
+                      <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{scholarship.engagement}</span>
+                    </div>
+                    <h4 className="font-bold text-gray-900 mb-4">{scholarship.title}</h4>
+                    <div className="flex items-center justify-between text-sm">
+                      <div className="flex items-center gap-2">
+                        <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                         </svg>
-                      </button>
+                        <span className="text-gray-600 font-medium">{scholarship.applicants} Applicants</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        <span className="text-gray-600 font-medium">{scholarship.deadline}</span>
+                      </div>
                     </div>
-                    <div className="flex gap-2 mb-3">
-                      <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-700">
-                        {scholarship.status}
-                      </span>
-                      <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-cyan-100 text-cyan-700">
-                        {scholarship.engagement}
-                      </span>
-                    </div>
-                    <div className="space-y-1 text-sm">
-                      <p className="text-gray-600">
-                        <span className="font-semibold text-gray-900">{scholarship.applicants}</span> Applicants
-                      </p>
-                      <p className="text-gray-600">
-                        Deadline: <span className="font-semibold text-gray-900">{scholarship.deadline}</span>
-                      </p>
-                    </div>
-                    <button className="mt-3 text-blue-600 hover:text-blue-700 font-medium text-sm">Edit Details →</button>
                   </div>
                 ))}
-              </div>
-
-              <div className="px-6 py-4 border-t border-gray-200">
-                <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors">
-                  + Post New Scholarship
-                </button>
+                <button className="w-full py-3 bg-gray-50 text-gray-600 font-bold text-xs uppercase tracking-widest rounded-xl hover:bg-gray-100 transition-colors">View All Scholarships</button>
               </div>
             </div>
-          </div>
-
-          {/* Compliance Notice */}
-          <div className="mt-8 bg-gray-900 text-white rounded-lg p-6 flex items-start gap-4">
-            <svg className="w-6 h-6 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <div className="flex-1">
-              <h3 className="font-bold mb-1">Compliance and Privacy Notice</h3>
-              <p className="text-sm text-gray-300">
-                Personal data is processed in accordance with the Data Privacy Act of 2012. Providers are responsible for ensuring proper data handling and security compliance. For more information, please review our privacy policy.
-              </p>
-            </div>
-            <span className="text-xs font-semibold text-gray-400">ISO 27001</span>
           </div>
         </div>
       </main>
