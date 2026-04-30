@@ -27,7 +27,7 @@ export default function SchoolActiveScholarships() {
       maxApplicants: 1500,
       deadline: "2024-11-02",
       applicantsChange: "+8%",
-      categoryColor: "green"
+      categoryColor: "blue"
     }
   ]);
 
@@ -75,7 +75,7 @@ export default function SchoolActiveScholarships() {
                 <p className="text-gray-500 text-sm max-w-2xl">Manage your current funding opportunities and track applicant engagement in real-time.</p>
               </div>
               <div className="flex gap-3">
-                <button onClick={() => setShowAddModal(true)} className="px-6 py-2.5 bg-green-600 text-white rounded-xl font-bold text-sm hover:bg-green-700 transition-all shadow-lg shadow-green-100 flex items-center gap-2">
+                <button onClick={() => setShowAddModal(true)} className="px-6 py-2.5 bg-blue-600 text-white rounded-xl font-bold text-sm hover:bg-blue-700 transition-all shadow-lg shadow-blue-100 flex items-center gap-2">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                   </svg>
@@ -89,10 +89,10 @@ export default function SchoolActiveScholarships() {
               {scholarships.map((scholarship) => (
                 <div key={scholarship.id} className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col">
                   <div className="flex items-center justify-between mb-4">
-                    <span className="px-3 py-1 bg-green-50 text-green-600 text-[10px] font-bold uppercase tracking-widest rounded-full">
+                    <span className="px-3 py-1 bg-blue-50 text-blue-600 text-[10px] font-bold uppercase tracking-widest rounded-full">
                       {scholarship.category}
                     </span>
-                    <span className={`w-2 h-2 rounded-full ${scholarship.isActive ? 'bg-green-500' : 'bg-red-500'}`}></span>
+                    <span className={`w-2 h-2 rounded-full ${scholarship.isActive ? 'bg-blue-500' : 'bg-red-500'}`}></span>
                   </div>
                   <h3 className="text-lg font-bold text-gray-900 mb-2">{scholarship.title}</h3>
                   <p className="text-gray-500 text-sm mb-6 flex-1">{scholarship.description}</p>
@@ -102,16 +102,16 @@ export default function SchoolActiveScholarships() {
                       <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Applicants</p>
                       <div className="flex items-baseline gap-2">
                         <p className="text-xl font-bold text-gray-900">{scholarship.applicants}</p>
-                        <p className="text-xs text-green-600 font-bold">{scholarship.applicantsChange}</p>
+                        <p className="text-xs text-blue-600 font-bold">{scholarship.applicantsChange}</p>
                       </div>
                       <div className="w-full bg-gray-100 rounded-full h-1.5 mt-2">
-                        <div className="bg-green-600 h-1.5 rounded-full" style={{ width: `${(scholarship.applicants / scholarship.maxApplicants) * 100}%` }}></div>
+                        <div className="bg-blue-600 h-1.5 rounded-full" style={{ width: `${(scholarship.applicants / scholarship.maxApplicants) * 100}%` }}></div>
                       </div>
                     </div>
                     <div className="text-right">
                       <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Deadline</p>
                       <p className="text-sm font-bold text-gray-900">{formatDate(scholarship.deadline)}</p>
-                      <button className="mt-2 text-green-600 font-bold text-xs uppercase tracking-wider hover:text-green-700 transition-colors">Edit Details</button>
+                      <button className="mt-2 text-blue-600 font-bold text-xs uppercase tracking-wider hover:text-blue-700 transition-colors">Edit Details</button>
                     </div>
                   </div>
                 </div>
@@ -120,10 +120,10 @@ export default function SchoolActiveScholarships() {
               {/* Create New Card */}
               <button 
                 onClick={() => setShowAddModal(true)}
-                className="bg-gray-50 rounded-2xl border-2 border-dashed border-gray-200 p-8 flex flex-col items-center justify-center text-center group hover:border-green-200 hover:bg-green-50/30 transition-all"
+                className="bg-gray-50 rounded-2xl border-2 border-dashed border-gray-200 p-8 flex flex-col items-center justify-center text-center group hover:border-blue-200 hover:bg-blue-50/30 transition-all"
               >
                 <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm mb-4 group-hover:scale-110 transition-transform">
-                  <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                   </svg>
                 </div>

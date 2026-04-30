@@ -15,7 +15,7 @@ export default function SchoolApplicantQueue() {
   const getStatusBadgeColor = (status) => {
     switch (status) {
       case "Under Review": return "bg-blue-100 text-blue-700";
-      case "Awarded": return "bg-green-100 text-green-700";
+      case "Awarded": return "bg-blue-100 text-blue-700";
       case "Pending Documents": return "bg-yellow-100 text-yellow-700";
       default: return "bg-gray-100 text-gray-700";
     }
@@ -34,7 +34,7 @@ export default function SchoolApplicantQueue() {
             <div className="mb-2">
               <h2 className="text-3xl font-bold text-gray-900 mb-2">Applicant Queue</h2>
               <p className="text-gray-500 flex items-center gap-2 text-sm">
-                <svg className="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zm-11-1a1 1 0 11-2 0 1 1 0 012 0z" clipRule="evenodd" />
                 </svg>
                 Managing active scholarship applications for the 2025-2026 cycle.
@@ -46,21 +46,21 @@ export default function SchoolApplicantQueue() {
               <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Total Applicants</p>
                 <p className="text-3xl font-bold text-gray-900 mb-1">1,284</p>
-                <p className="text-xs text-green-600 font-bold">↑ +12%</p>
+                <p className="text-xs text-blue-600 font-bold">↑ +12%</p>
               </div>
               <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Under Review</p>
-                <p className="text-3xl font-bold text-green-600 mb-3">452</p>
+                <p className="text-3xl font-bold text-blue-600 mb-3">452</p>
                 <div className="w-full bg-gray-100 rounded-full h-1.5">
-                  <div className="bg-green-600 h-1.5 rounded-full" style={{ width: "35%" }}></div>
+                  <div className="bg-blue-600 h-1.5 rounded-full" style={{ width: "35%" }}></div>
                 </div>
               </div>
               <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Awarded</p>
-                <p className="text-3xl font-bold text-green-600 mb-1">86</p>
+                <p className="text-3xl font-bold text-blue-600 mb-1">86</p>
                 <p className="text-xs text-gray-500 font-medium">6.7% Rate</p>
               </div>
-              <div className="bg-green-600 rounded-2xl p-6 text-white shadow-lg shadow-green-100">
+              <div className="bg-blue-600 rounded-2xl p-6 text-white shadow-lg shadow-blue-100">
                 <p className="text-sm font-bold mb-1 opacity-80">Next Review</p>
                 <p className="text-xl font-bold">Oct 15, 2024</p>
               </div>
@@ -72,7 +72,7 @@ export default function SchoolApplicantQueue() {
                 <h3 className="font-bold text-gray-900">Queue Management</h3>
                 <div className="flex gap-2">
                   <button className="px-4 py-2 bg-white border border-gray-200 rounded-xl text-xs font-bold text-gray-600 hover:bg-gray-50 transition-colors">Export CSV</button>
-                  <button className="px-4 py-2 bg-green-600 text-white rounded-xl text-xs font-bold hover:bg-green-700 transition-colors shadow-md shadow-green-50">Filter</button>
+                  <button className="px-4 py-2 bg-blue-600 text-white rounded-xl text-xs font-bold hover:bg-blue-700 transition-colors shadow-md shadow-blue-50">Filter</button>
                 </div>
               </div>
               <div className="overflow-x-auto">
@@ -91,7 +91,7 @@ export default function SchoolApplicantQueue() {
                       <tr key={applicant.id} className="hover:bg-gray-50/50 transition-colors">
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-3">
-                            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center text-white font-bold text-xs">
+                            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold text-xs">
                               {applicant.name.charAt(0)}
                             </div>
                             <div>
@@ -108,7 +108,7 @@ export default function SchoolApplicantQueue() {
                           </span>
                         </td>
                         <td className="px-6 py-4 text-right">
-                          <button className="text-green-600 hover:text-green-700 font-bold text-xs uppercase tracking-wider transition-colors">View Profile</button>
+                          <button className="text-blue-600 hover:text-blue-700 font-bold text-xs uppercase tracking-wider transition-colors">View Profile</button>
                         </td>
                       </tr>
                     ))}
