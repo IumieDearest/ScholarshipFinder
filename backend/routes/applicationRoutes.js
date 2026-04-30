@@ -10,5 +10,7 @@ router.delete('/:id/withdraw', authenticateToken, requireRole(['Student']), with
 router.get('/provider/applicants', authenticateToken, requireRole(['Provider']), getProviderApplications);
 router.put('/:id/status', authenticateToken, requireRole(['Provider']), updateApplicationStatus);
 router.get('/:id', authenticateToken, getApplicationById);
+router.get('/school/verification-requests', authenticateToken, requireRole(['School']), getSchoolVerificationRequests); 
+router.put('/school/verification-requests/:id/status', authenticateToken, requireRole(['School']), updateVerificationStatus);
 
 export default router;

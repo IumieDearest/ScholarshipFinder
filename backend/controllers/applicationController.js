@@ -196,3 +196,57 @@ export async function withdrawApplication(req, res) {
     res.status(500).json({ error: 'Failed to withdraw application' });
   }
 }
+
+// Controller function to get all verification requests for a school
+export async function getSchoolVerificationRequests(req, res) {
+  try {
+    const schoolId = req.user.id;
+    const db = getDatabase();
+
+    const verificationRequests = await db.all(
+      `SELECT vr.*, u.name as studentName, u.email as studentEmail
+       FROM verificationrecords vr
+       JOIN users u ON vr.studentId = u.id
+       WHERE vr.schoolId = ?
+       ORDER BY vr.createdAt DESC`,
+      [schoolId]
+    );
+
+    res.json({ verificationRequests });
+  } catch (error) {
+    console.error('Get school verification requests error:', error);
+    res.status(500).json({ error: 'Failed to fetch verification requests' });
+  }
+}
+
+// Controller function to update the status of a student verification request
+export async function updateVerificationStatus(req, res) {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+    const schoolId = req.user.id;
+    const db = getDatabase();
+
+    // Check if the verification record exists and belongs to the school
+    const verificationRecord = await db.get(
+      'SELECT schoolId FROM verificationrecords WHERE id = ?',
+      [id]
+    );
+
+    if (!verificationRecord || verificationRecord.schoolId !== schoolId) {
+      return res.status(403).json({ error: 'Unauthorized or verification record not found' });
+    }
+
+    const now = new Date().toISOString();
+
+    await db.run(
+      'UPDATE verificationrecords SET status = ?, verificationDate = ?, updatedAt = ? WHERE id = ?',
+      [status, now, now, id]
+    );
+
+    res.json({ message: 'Verification status updated successfully' });
+  } catch (error) {
+    console.error('Update verification status error:', error);
+    res.status(500).json({ error: 'Failed to update verification status' });
+  }
+}
