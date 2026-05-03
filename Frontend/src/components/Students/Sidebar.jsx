@@ -119,9 +119,7 @@ export default function Sidebar() {
           onClick={() => setSidebarOpen(!sidebarOpen)}
           className="flex items-center gap-2 hover:opacity-80 transition-opacity"
         >
-          <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white text-xs font-bold">
-            SF
-          </div>
+          <img src="/Logo.png" alt="ScholarshipFinder" className="w-8 h-8" />
         </button>
 
         {/* Hamburger Menu */}
